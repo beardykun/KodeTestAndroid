@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">KodeTestAndroid</string>
+    <string name="action_settings">Settings</string>
+    <string name="find_flight">Найти рейсы</string>
+    <string name="infant">до 2-х лет</string>
+    <string name="child">2–12 лет</string>
+    <string name="adult">Взрослый</string>
+    <string name="all_airports">Все аэропорты</string>
+    <string name="fly_back">обратный рейс</string>
+    <string name="there">Туда</string>
+    <string name="back">Обратно</string>
+    <string name="home">Калининград</string>
+    <string name="destination">Москва</string>
+    <string name="step_7">Шаг 7 из 7. Проверьте данные</string>
+    <string name="adult_num">1</string>
+    <string name="kids_num">0</string>
+    <string name="child_num">0</string>
+    <string name="app_error_dismiss" translatable="false">OK</string>
+</resources>

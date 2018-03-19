@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00000000</color>
+    <color name="colorPrimaryDark">#00000000</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="black">#000</color>
+    <color name="separator">#616161</color>
+    <color name="button_blue">#283593</color>
+    <color name="gray_not_selected">#757575</color>
+    <color name="light_gray">#E8EAF6</color>
+    <color name="really_hot">#F44336</color>
+    <color name="hot">#FF5722</color>
+    <color name="warm">#FFC107</color>
+    <color name="cool">#8BC34A</color>
+    <color name="cold">#03A9F4</color>
+    <color name="really_cold">#3F51B5</color>
+</resources>

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/dp8"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardForecastDeparture"
+        android:layout_width="260dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/dp16"
+        android:layout_marginEnd="@dimen/dp4"
+        android:layout_marginLeft="@dimen/dp16"
+        android:layout_marginRight="@dimen/dp4"
+        android:layout_marginStart="@dimen/dp16"
+        android:layout_marginTop="@dimen/dp16"
+        android:layout_weight="1"
+        card_view:cardCornerRadius="@dimen/dp32"
+        card_view:cardElevation="@dimen/dp8"
+        card_view:cardPreventCornerOverlap="false">
+
+        <LinearLayout
+            android:id="@+id/layoutForecastDeparture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewForecastDepartureName"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gray_not_selected"
+                android:gravity="center"
+                android:padding="@dimen/dp4"
+                android:textColor="@color/amdp_white"
+                tools:text="Kaliningrad"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp8"
+                android:layout_marginLeft="@dimen/dp16"
+                android:layout_marginStart="@dimen/dp16"
+                android:layout_marginTop="@dimen/dp8"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textViewForecastDepartureTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp8"
+                        tools:text="12/07/18 20:30"/>
+
+                    <TextView
+                        android:id="@+id/textViewForecastDeparturePressure"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp8"
+                        tools:text="1051hPa"/>
+
+                    <TextView
+                        android:id="@+id/textViewForecastDepartureHumidity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp8"
+                        tools:text="78%"/>
+
+                    <TextView
+                        android:id="@+id/textViewForecastDepartureCloudiness"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp8"
+                        tools:text="88%"/>
+
+                    <TextView
+                        android:id="@+id/textViewForecastDepartureWindSpeed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp8"
+                        tools:text="3.2"/>
+
+                    <TextView
+                        android:id="@+id/textViewForecastDepartureWindDirection"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="SW"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp16"
+                    android:layout_marginStart="@dimen/dp16"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textViewForecastDepartureWeatherDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="clouds"/>
+
+                    <ImageView
+                        android:id="@+id/imageViewForecastDeparture"
+                        android:layout_width="@dimen/dp48"
+                        android:layout_height="@dimen/dp48"/>
+
+                    <ImageView
+                        android:id="@+id/imageViewForecastDepartureTemp"
+                        android:layout_width="@dimen/dp48"
+                        android:layout_height="@dimen/dp48"
+                        android:layout_marginBottom="@dimen/dp8"/>
+
+                    <TextView
+                        android:id="@+id/textViewForecastDepartureTemperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        tools:text="23 c"/>
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardForecastDestination"
+        android:layout_width="260dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/dp16"
+        android:layout_marginEnd="@dimen/dp4"
+        android:layout_marginLeft="@dimen/dp16"
+        android:layout_marginRight="@dimen/dp4"
+        android:layout_marginStart="@dimen/dp16"
+        android:layout_marginTop="@dimen/dp16"
+        android:layout_weight="1"
+        card_view:cardCornerRadius="@dimen/dp32"
+        card_view:cardElevation="@dimen/dp8"
+        card_view:cardPreventCornerOverlap="false">
+
+        <LinearLayout
+            android:id="@+id/layoutForecastDestination"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewForecastDestinationName"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/button_blue"
+                android:gravity="center"
+                android:padding="@dimen/dp4"
+                android:textColor="@color/amdp_white"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/dp8"
+                android:layout_marginLeft="@dimen/dp16"
+                android:layout_marginStart="@dimen/dp16"
+                android:layout_marginTop="@dimen/dp8"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textViewForecastDestinationTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp8"/>
+
+                    <TextView
+                        android:id="@+id/textViewForecastDestinationPressure"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp8"/>
+
+                    <TextView
+                        android:id="@+id/textViewForecastDestinationHumidity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp8"/>
+
+                    <TextView
+                        android:id="@+id/textViewForecastDestinationCloudiness"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp8"/>
+
+                    <TextView
+                        android:id="@+id/textViewForecastDestinationWindSpeed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/dp8"/>
+
+                    <TextView
+                        android:id="@+id/textViewForecastDestinationWindDirection"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp16"
+                    android:layout_marginStart="@dimen/dp16"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textViewForecastDestinationWeatherDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <ImageView
+                        android:id="@+id/imageViewForecastDestination"
+                        android:layout_width="@dimen/dp48"
+                        android:layout_height="@dimen/dp48"/>
+
+                    <ImageView
+                        android:id="@+id/imageViewForecastDestinationTemp"
+                        android:layout_width="@dimen/dp48"
+                        android:layout_height="@dimen/dp48"
+                        android:layout_marginBottom="@dimen/dp8"/>
+
+                    <TextView
+                        android:id="@+id/textViewForecastDestinationTemperature"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

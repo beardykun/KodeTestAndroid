@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.iamagamedev.kodetestandroid.mainActivity.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <LinearLayout android:id="@+id/layoutDotImages"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_alignBottom="@+id/linearLayoutFromTo"
+                  android:layout_marginTop="@dimen/dp24"
+                  android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/dp16"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_dot_from"/>
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="4"
+            android:scaleType="centerCrop"
+            app:srcCompat="@mipmap/ic_launcher_dots_small"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/dp16"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_dot_to"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutFromTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/imageViewExchange"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="@dimen/dp32"
+        android:layout_marginStart="@dimen/dp16"
+        android:layout_marginTop="@dimen/dp24"
+        android:layout_toEndOf="@id/layoutDotImages"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/layoutDeparturePlace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewDeparturePlace"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home"
+                android:textColor="@color/black"/>
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Caption"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/all_airports"/>
+        </LinearLayout>
+
+        <View
+            android:id="@+id/separateViewFromTo"
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginBottom="@dimen/dp16"
+            android:layout_marginTop="@dimen/dp16"
+            android:background="@color/separator"/>
+
+        <LinearLayout
+            android:id="@+id/layoutDestinationPlace"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewDestinationPlace"
+                style="@style/TextAppearance.AppCompat.Medium"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/destination"
+                android:textColor="@color/black"/>
+
+            <TextView
+                style="@style/TextAppearance.AppCompat.Caption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/all_airports"/>
+        </LinearLayout>
+    </LinearLayout>
+    <ImageView
+        android:id="@+id/imageViewExchange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/linearLayoutFromTo"
+        android:layout_alignBottom="@id/linearLayoutFromTo"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@id/linearLayoutFromTo"
+        android:layout_marginEnd="@dimen/dp16"
+        android:src="@mipmap/ic_exchange"/>
+
+    <View
+        android:id="@+id/separateView2"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@id/linearLayoutFromTo"
+        android:layout_marginBottom="@dimen/dp16"
+        android:layout_marginTop="@dimen/dp16"
+        android:background="@color/separator"/>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutWhen"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/linearLayoutFromTo"
+        android:layout_below="@id/separateView2"
+        android:clipToPadding="false"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dp16"
+        android:paddingTop="@dimen/dp16">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dp32">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/textInputFlightDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:editable="false"
+                android:focusable="false"
+                android:hint="@string/there"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/textLayoutReturnDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/textInputReturnDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:editable="false"
+                android:focusable="false"
+                android:hint="@string/back"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/imageViewHideReturnDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/dp16"
+            android:src="@drawable/ic_highlight_off_blue_24dp"
+            android:visibility="gone"/>
+
+        <TextView
+            android:id="@+id/textViewShowReturnDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@android:color/white"
+            android:drawableEnd="@drawable/ic_add_circle_outline_blue_24dp"
+            android:drawablePadding="@dimen/dp16"
+            android:elevation="@dimen/dp4"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dp6"
+            android:text="@string/fly_back"
+            android:textAllCaps="true"
+            android:textColor="@color/button_blue"/>
+    </LinearLayout>
+
+    <View
+        android:id="@+id/separateView3"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_below="@id/linearLayoutWhen"
+        android:layout_marginBottom="@dimen/dp48"
+        android:layout_marginTop="@dimen/dp16"
+        android:background="@color/separator"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/separateView3"
+        android:layout_centerInParent="true"
+        android:paddingEnd="0dp"
+        android:paddingStart="@dimen/dp32">
+
+        <ImageView
+            android:id="@+id/imageViewPassengerAdultPlus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="@dimen/dp16"
+            android:layout_marginEnd="@dimen/dp64"
+            android:src="@drawable/ic_add_circle_outline_blue_24dp"/>
+
+        <ImageView
+            android:id="@+id/imageViewPassengerKidPlus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp16"
+            android:layout_marginEnd="@dimen/dp64"
+            android:layout_toEndOf="@+id/imageViewPassengerAdultPlus"
+            android:src="@drawable/ic_add_circle_outline_blue_24dp"/>
+
+        <ImageView
+            android:id="@+id/imageViewPassengerChildPlus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/dp16"
+            android:layout_toEndOf="@+id/imageViewPassengerKidPlus"
+            android:src="@drawable/ic_add_circle_outline_blue_24dp"/>
+
+        <TextView
+            android:id="@+id/textViewNumAdultPassengers"
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageViewPassengerAdultPlus"
+            android:layout_marginStart="@dimen/dp4"
+            android:gravity="end|center"
+            android:text="@string/adult_num"/>
+
+        <TextView
+            android:id="@+id/textViewNumKidPassengers"
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageViewPassengerKidPlus"
+            android:layout_marginStart="@dimen/dp4"
+            android:layout_toEndOf="@+id/imageViewPassengerAdultPlus"
+            android:gravity="end|center"
+            android:text="@string/kids_num"
+            android:textColor="@color/gray_not_selected"/>
+
+        <TextView
+            android:id="@+id/textViewNumChildPassengers"
+            style="@style/TextAppearance.AppCompat.Headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageViewPassengerChildPlus"
+            android:layout_marginStart="@dimen/dp4"
+            android:layout_toEndOf="@+id/imageViewPassengerKidPlus"
+            android:gravity="end|center"
+            android:text="@string/child_num"
+            android:textColor="@color/gray_not_selected"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/textViewNumAdultPassengers"
+            android:layout_marginStart="@dimen/dp8"
+            android:layout_toEndOf="@id/textViewNumAdultPassengers"
+            android:src="@drawable/ic_adult_24dp"/>
+
+        <ImageView
+            android:id="@+id/imageViewKidIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/textViewNumKidPassengers"
+            android:layout_marginStart="@dimen/dp8"
+            android:layout_toEndOf="@id/textViewNumKidPassengers"
+            android:src="@drawable/ic_kid_gray_18dp"/>
+
+        <ImageView
+            android:id="@+id/imageViewChildIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/textViewNumChildPassengers"
+            android:layout_marginStart="@dimen/dp8"
+            android:layout_toEndOf="@id/textViewNumChildPassengers"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_baby_gray_12dp"/>
+
+        <TextView
+            android:id="@+id/textViewPassengerAdultYears"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewNumAdultPassengers"
+            android:layout_marginStart="@dimen/dp4"
+            android:gravity="center"
+            android:text="@string/adult"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/textViewPassengerKidYears"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewNumAdultPassengers"
+            android:layout_marginStart="@dimen/dp4"
+            android:layout_toEndOf="@+id/imageViewPassengerAdultPlus"
+            android:gravity="center"
+            android:text="@string/child"/>
+
+        <TextView
+            android:id="@+id/textViewPassengerChildYears"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewNumAdultPassengers"
+            android:layout_marginStart="@dimen/dp4"
+            android:layout_toEndOf="@+id/imageViewPassengerKidPlus"
+            android:gravity="center"
+            android:text="@string/infant"/>
+
+
+        <ImageView
+            android:id="@+id/imageViewPassengerAdultMinus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewPassengerAdultYears"
+            android:layout_marginTop="@dimen/dp16"
+            android:src="@drawable/ic_remove_circle_outline_gray_24dp"/>
+
+        <ImageView
+            android:id="@+id/imageViewPassengerKidMinus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewPassengerAdultYears"
+            android:layout_marginTop="@dimen/dp16"
+            android:layout_toEndOf="@+id/imageViewPassengerAdultPlus"
+            android:src="@drawable/ic_remove_circle_outline_gray_24dp"/>
+
+        <ImageView
+            android:id="@+id/imageViewPassengerChildMinus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textViewPassengerAdultYears"
+            android:layout_marginTop="@dimen/dp16"
+            android:layout_toEndOf="@+id/imageViewPassengerKidPlus"
+            android:src="@drawable/ic_remove_circle_outline_gray_24dp"/>
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/buttonFindFlight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="@dimen/dp16"
+        android:background="@color/button_blue"
+        android:text="@string/find_flight"
+        android:textColor="@android:color/white"/>
+</RelativeLayout>
