@@ -13,6 +13,7 @@ import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.iamagamedev.kodetestandroid.Constants;
 import com.iamagamedev.kodetestandroid.R;
@@ -101,8 +102,8 @@ public class MainActivity extends GeneralActivity implements View.OnClickListene
     Drawable minusBlue;
     @BindDrawable(R.drawable.ic_remove_circle_outline_gray_24dp)
     Drawable minusGray;
-    private int DIALOG_CALL = 1;
-    private int DIALOG_RETURN_CALL = 2;
+    private static final int DIALOG_CALL = 1;
+    private static final int DIALOG_RETURN_CALL = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -227,16 +228,7 @@ public class MainActivity extends GeneralActivity implements View.OnClickListene
                 break;
 
             case R.id.textInputReturnDate:
-                datePickerDialog = null;
-                datePickerDialog = new DatePickerDialog(
-                        this,
-                        myReturnDateListener,
-                        calendarFlightDate.get(Calendar.YEAR),
-                        calendarFlightDate.get(Calendar.MONTH),
-                        calendarFlightDate.get(Calendar.DAY_OF_MONTH)
-                );
-                datePickerDialog.getDatePicker().setMinDate(calendarFlightDate.getTimeInMillis());
-                datePickerDialog.show();
+                createReturnDialog();
                 break;
         }
         textViewNumAdultPassengers.setText(String.valueOf(adultNum));
@@ -253,7 +245,11 @@ public class MainActivity extends GeneralActivity implements View.OnClickListene
 
     @Override
     public void showReturnDate() {
-        showDialog(DIALOG_RETURN_CALL);
+        if (datePickerDialog == null)
+            showDialog(DIALOG_RETURN_CALL);
+        else
+            createReturnDialog();
+
     }
 
     @Override
@@ -265,37 +261,51 @@ public class MainActivity extends GeneralActivity implements View.OnClickListene
 
     @Override
     public void adultPlusPress() {
-        adultNum++;
-        if (adultNum == 2)
-            imageViewPassengerAdultMinus.setImageDrawable(minusBlue);
+        if (maxPassengersNum()) {
+            adultNum++;
+            if (adultNum == 2)
+                imageViewPassengerAdultMinus.setImageDrawable(minusBlue);
+        }
     }
 
     @Override
     public void kidPlusPress() {
-        kidNum++;
-        if (kidNum == 1) {
-            imageViewKidIcon.setImageDrawable(kidBlack);
-            textViewNumKidPassengers.setTextColor(getResources().getColor(R.color.black));
-            textViewPassengerKidYears.setTextColor(getResources().getColor(R.color.black));
-            imageViewPassengerKidMinus.setImageDrawable(minusBlue);
+        if (maxPassengersNum()) {
+            kidNum++;
+            if (kidNum == 1) {
+                imageViewKidIcon.setImageDrawable(kidBlack);
+                textViewNumKidPassengers.setTextColor(getResources().getColor(R.color.black));
+                textViewPassengerKidYears.setTextColor(getResources().getColor(R.color.black));
+                imageViewPassengerKidMinus.setImageDrawable(minusBlue);
+            }
         }
     }
 
     @Override
     public void childPlusPress() {
-        childNum++;
-        if (childNum == 1) {
-            imageViewChildIcon.setImageDrawable(childBlack);
-            textViewNumChildPassengers.setTextColor(getResources().getColor(R.color.black));
-            textViewPassengerChildYears.setTextColor(getResources().getColor(R.color.black));
-            imageViewPassengerChildMinus.setImageDrawable(minusBlue);
+        if (maxPassengersNum()) {
+            childNum++;
+            if (childNum > adultNum) {
+                childNum = adultNum;
+                Toast.makeText(this, R.string.child_limit, Toast.LENGTH_SHORT).show();
+            }
+            if (childNum == 1) {
+                imageViewChildIcon.setImageDrawable(childBlack);
+                textViewNumChildPassengers.setTextColor(getResources().getColor(R.color.black));
+                textViewPassengerChildYears.setTextColor(getResources().getColor(R.color.black));
+                imageViewPassengerChildMinus.setImageDrawable(minusBlue);
+            }
         }
     }
 
     @Override
     public void adultMinusPress() {
-        if (adultNum > 1)
+        if (adultNum > 1) {
             adultNum--;
+            if (childNum > adultNum) {
+                childNum = adultNum;
+            }
+        }
 
         if (adultNum == 1)
             imageViewPassengerAdultMinus.setImageDrawable(minusGray);
@@ -357,15 +367,17 @@ public class MainActivity extends GeneralActivity implements View.OnClickListene
 
     @Override
     protected Dialog onCreateDialog(int id) {
-        if (id == DIALOG_CALL) {
-            DatePickerDialog dialog = new DatePickerDialog(this, myDateListener, year, month, day);
-            dialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
-            return dialog;
+        switch (id) {
+            case DIALOG_CALL:
+                DatePickerDialog dialog = new DatePickerDialog(this, myDateListener, year, month, day);
+                dialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
+                return dialog;
 
-        } else if (id == DIALOG_RETURN_CALL) {
-            datePickerDialog = new DatePickerDialog(this, myReturnDateListener, year, month, day);
-            datePickerDialog.getDatePicker().setMinDate(calendarFlightDate.getTimeInMillis());
-            return datePickerDialog;
+            case DIALOG_RETURN_CALL:
+                datePickerDialog = new DatePickerDialog(this, myReturnDateListener, year, month, day);
+                datePickerDialog.getDatePicker().setMinDate(calendarFlightDate.getTimeInMillis());
+
+                return datePickerDialog;
         }
         return null;
     }
@@ -386,6 +398,7 @@ public class MainActivity extends GeneralActivity implements View.OnClickListene
 
     private void showDate(int year, int month, int day) {
         textInputFlightDate.setText(formatDate(calendarFlightDate, year, month, day));
+        hideReturnDate();
     }
 
     private void showReturnDate(int year, int month, int day) {
@@ -424,5 +437,28 @@ public class MainActivity extends GeneralActivity implements View.OnClickListene
     @Override
     public void showError(int error, int... code) {
         showError(error, code);
+    }
+
+    private boolean maxPassengersNum() {
+        if ((adultNum + kidNum + childNum) < 9) {
+            return true;
+        } else {
+            Toast.makeText(this, R.string.limit, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    private void createReturnDialog() {
+        //костыль :(
+        datePickerDialog = null;
+        datePickerDialog = new DatePickerDialog(
+                this,
+                myReturnDateListener,
+                calendarFlightDate.get(Calendar.YEAR),
+                calendarFlightDate.get(Calendar.MONTH),
+                calendarFlightDate.get(Calendar.DAY_OF_MONTH)
+        );
+        datePickerDialog.getDatePicker().setMinDate(calendarFlightDate.getTimeInMillis());
+        datePickerDialog.show();
     }
 }

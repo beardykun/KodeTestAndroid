@@ -54,7 +54,10 @@ public class ForecastActivity extends GeneralActivity implements IForecastView {
     protected void onStart() {
         super.onStart();
         presenter.onAttachView(this);
-        presenter.getForecast(getIntent().getStringExtra(Constants.CITY_LAT_LON), getIntent().getStringExtra(Constants.CITY_LAT_LON2));
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null && bundle.containsKey(Constants.CITY_LAT_LON) && bundle.containsKey(Constants.CITY_LAT_LON2)) {
+            presenter.getForecast(bundle.getString(Constants.CITY_LAT_LON), bundle.getString(Constants.CITY_LAT_LON2));
+        }
         textViewForecastDepartureBar.setText(getIntent().getStringExtra(Constants.CITY));
         textViewForecastDestinationBar.setText(getIntent().getStringExtra(Constants.CITY_2));
     }

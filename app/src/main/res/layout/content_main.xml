@@ -205,16 +205,17 @@
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_below="@id/linearLayoutWhen"
-        android:layout_marginBottom="@dimen/dp48"
         android:layout_marginTop="@dimen/dp16"
         android:background="@color/separator"/>
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_below="@+id/separateView3"
         android:layout_centerInParent="true"
+        android:gravity="center"
         android:paddingEnd="0dp"
+        android:layout_marginBottom="@dimen/dp64"
         android:paddingLeft="@dimen/dp32"
         android:paddingRight="0dp"
         android:paddingStart="@dimen/dp32">

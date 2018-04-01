@@ -45,8 +45,6 @@ public class CityListActivity extends GeneralActivity implements SearchView.OnQu
             actionBar.setDisplayShowTitleEnabled(false);
         }
 
-        fromTo = getIntent().getBooleanExtra(Constants.FROM_TO, false);
-
         mPresenter = new CityListPresenter();
         setSearchViewSettings();
     }
@@ -54,6 +52,10 @@ public class CityListActivity extends GeneralActivity implements SearchView.OnQu
     @Override
     protected void onStart() {
         super.onStart();
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null && bundle.containsKey(Constants.FROM_TO)) {
+            fromTo = bundle.getBoolean(Constants.FROM_TO, false);
+        }
         mPresenter.onAttachView(this);
         mPresenter.onShowList();
     }
@@ -61,6 +63,7 @@ public class CityListActivity extends GeneralActivity implements SearchView.OnQu
     @Override
     protected void onStop() {
         mPresenter.onDetachView();
+        adapter.setListener(null);
         super.onStop();
     }
 
