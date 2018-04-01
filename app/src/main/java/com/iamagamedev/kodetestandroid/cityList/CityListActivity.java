@@ -3,10 +3,10 @@ package com.iamagamedev.kodetestandroid.cityList;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.iamagamedev.kodetestandroid.Constants;
@@ -19,7 +19,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CityListActivity extends GeneralActivity implements SearchView.OnQueryTextListener, ICityListView, CityListAdapter.onCityListItemClickListener {
+public class CityListActivity extends GeneralActivity implements SearchView.OnQueryTextListener, ICityListView, CityListRecyclerAdapter.onCityListItemClickListener {
 
     @BindView(R.id.recyclerCityView)
     RecyclerView recyclerView;
@@ -27,7 +27,7 @@ public class CityListActivity extends GeneralActivity implements SearchView.OnQu
     SearchView searchView;
     @BindView(R.id.imageViewSearch)
     ImageView imageViewSearch;
-    private CityListAdapter adapter;
+    private CityListRecyclerAdapter adapter;
     private ICityListPresenter mPresenter;
     private boolean fromTo;
 
@@ -44,7 +44,10 @@ public class CityListActivity extends GeneralActivity implements SearchView.OnQu
             actionBar.setDisplayShowHomeEnabled(true);
             actionBar.setDisplayShowTitleEnabled(false);
         }
-
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null && bundle.containsKey(Constants.FROM_TO)) {
+            fromTo = bundle.getBoolean(Constants.FROM_TO, false);
+        }
         mPresenter = new CityListPresenter();
         setSearchViewSettings();
     }
@@ -52,10 +55,7 @@ public class CityListActivity extends GeneralActivity implements SearchView.OnQu
     @Override
     protected void onStart() {
         super.onStart();
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null && bundle.containsKey(Constants.FROM_TO)) {
-            fromTo = bundle.getBoolean(Constants.FROM_TO, false);
-        }
+
         mPresenter.onAttachView(this);
         mPresenter.onShowList();
     }
@@ -75,10 +75,10 @@ public class CityListActivity extends GeneralActivity implements SearchView.OnQu
         searchView.setOnQueryTextListener(this);
         if (fromTo) {
             imageViewSearch.setImageDrawable(getResources().getDrawable(R.drawable.ic_dot_to));
-            searchView.setQueryHint(getString(R.string.there));
+            searchView.setQueryHint(getString(R.string.to));
         } else {
             imageViewSearch.setImageDrawable(getResources().getDrawable(R.drawable.ic_dot_from));
-            searchView.setQueryHint(getString(R.string.back));
+            searchView.setQueryHint(getString(R.string.from));
         }
     }
 
@@ -95,7 +95,7 @@ public class CityListActivity extends GeneralActivity implements SearchView.OnQu
 
     @Override
     public void initializeAdapter(List<String> list, List<String> cityLatLon) {
-        adapter = new CityListAdapter(list, cityLatLon);
+        adapter = new CityListRecyclerAdapter(list, cityLatLon);
         adapter.setListener(this);
         RecyclerView recyclerView = findViewById(R.id.recyclerCityView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -106,6 +106,7 @@ public class CityListActivity extends GeneralActivity implements SearchView.OnQu
     public void onCityListItemClick(String city, String cityLatLon) {
         Intent intent = new Intent(this, MainActivity.class);
         mPresenter.onCityClick(intent, city, cityLatLon, fromTo);
+        Log.i("City", cityLatLon);
     }
 
     @Override

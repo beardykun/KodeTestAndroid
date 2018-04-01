@@ -69,10 +69,12 @@
                 android:textColor="@color/black"/>
 
             <TextView
+                android:id="@+id/textViewDeparturePlaceAllAirports"
                 style="@style/TextAppearance.AppCompat.Caption"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/all_airports"/>
+                android:text="@string/all_airports"
+                android:visibility="invisible"/>
         </LinearLayout>
 
         <View
@@ -98,10 +100,12 @@
                 android:textColor="@color/black"/>
 
             <TextView
+                android:id="@+id/textViewDestinationPlaceAllAirports"
                 style="@style/TextAppearance.AppCompat.Caption"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/all_airports"/>
+                android:text="@string/all_airports"
+                android:visibility="invisible"/>
         </LinearLayout>
     </LinearLayout>
     <ImageView
@@ -203,9 +207,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/separateView3"
-        android:gravity="center"
         android:layout_centerInParent="true"
         android:layout_marginBottom="@dimen/dp64"
+        android:gravity="center"
         android:paddingEnd="0dp"
         android:paddingStart="@dimen/dp32">
 

@@ -18,4 +18,7 @@
     <string name="app_error_dismiss" translatable="false">OK</string>
     <string name="limit">Пассажиров должно быть не более 9 человек</string>
     <string name="child_limit">Младенцев не должно быть больше чем взрослых</string>
+    <string name="choose_cities">Выберите город вылета и прибытия</string>
+    <string name="to">Куда</string>
+    <string name="from">Откуда</string>
 </resources>

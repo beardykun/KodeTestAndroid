@@ -2,7 +2,6 @@ package com.iamagamedev.kodetestandroid.repository;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.iamagamedev.kodetestandroid.repository.MeetUpAPI;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -17,7 +16,7 @@ public class RetrofitForMyApp {
 
     private static String baseUrl = "https://api.meetup.com/";
 
-    private static MeetUpAPI sMeetUpAPI;
+    private static MeetUpAndForecastAPI sMeetUpAPI;
 
     private RetrofitForMyApp() {
     }
@@ -35,10 +34,10 @@ public class RetrofitForMyApp {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
-        sMeetUpAPI = retrofit.create(MeetUpAPI.class);
+        sMeetUpAPI = retrofit.create(MeetUpAndForecastAPI.class);
     }
 
-    public static MeetUpAPI getRetrofitService() {
+    public static MeetUpAndForecastAPI getRetrofitService() {
         if (sMeetUpAPI != null) {
             return sMeetUpAPI;
         } else {

@@ -19,4 +19,6 @@ public class Constants {
     public static final String CITY_LAT_LON = "cityLatLon";
 
     public static final String CITY_LAT_LON2 = "cityLatLon2";
+
+    public static final String FORECAST_API_KEY = "51d729c92098f4a1e42cbd63d7d8cf99";
 }

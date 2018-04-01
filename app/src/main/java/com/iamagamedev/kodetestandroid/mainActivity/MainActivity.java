@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -35,10 +34,10 @@ public class MainActivity extends GeneralActivity implements View.OnClickListene
     private int kidNum = 0;
     private int childNum = 0;
     private int year, month, day;
-    private static String from = "Kaliningrad";
-    private static String to = "Moscow";
-    private static String cityLatLon = "54.720001220703125,20.510000228881836";
-    private static String cityLatLon2 = "55.75,37.619998931884766";
+    private static String from = "Откуда";
+    private static String to = "Куда";
+    private static String cityLatLon = "";
+    private static String cityLatLon2 = "";
 
     private Calendar calendarFlightDate;
     private DatePickerDialog datePickerDialog;
@@ -114,22 +113,25 @@ public class MainActivity extends GeneralActivity implements View.OnClickListene
 
         presenter = new MainPresenter();
 
-        if (getIntent().hasExtra(Constants.CITY)) {
-            if (!getIntent().getBooleanExtra(Constants.FROM_TO, false)) {
-                from = getIntent().getStringExtra(Constants.CITY);
-                cityLatLon = getIntent().getStringExtra(Constants.CITY_LAT_LON);
+        setCalendarDate();
+    }
+
+    private void getExtras(Bundle bundle){
+        if (bundle != null && bundle.containsKey(Constants.CITY)) {
+            if (!bundle.getBoolean(Constants.FROM_TO, false)) {
+                from = bundle.getString(Constants.CITY);
+                cityLatLon = bundle.getString(Constants.CITY_LAT_LON);
             } else {
-                to = getIntent().getStringExtra(Constants.CITY);
-                cityLatLon2 = getIntent().getStringExtra(Constants.CITY_LAT_LON);
+                to = bundle.getString(Constants.CITY);
+                cityLatLon2 = bundle.getString(Constants.CITY_LAT_LON);
             }
         }
-        setCalendarDate();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        setListeners();
+        setListenersAndCount();
         presenter.onAttachView(this);
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat format1 = new SimpleDateFormat("d MMM EEE", Locale.ENGLISH);
@@ -139,8 +141,14 @@ public class MainActivity extends GeneralActivity implements View.OnClickListene
     @Override
     protected void onResume() {
         super.onResume();
+        Bundle bundle = getIntent().getExtras();
+        getExtras(bundle);
         textViewDeparturePlace.setText(from);
         textViewDestinationPlace.setText(to);
+        if (!cityLatLon.equals(""))
+        findViewById(R.id.textViewDeparturePlaceAllAirports).setVisibility(View.VISIBLE);
+        if (!cityLatLon2.equals(""))
+        findViewById(R.id.textViewDestinationPlaceAllAirports).setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -149,7 +157,7 @@ public class MainActivity extends GeneralActivity implements View.OnClickListene
         super.onStop();
     }
 
-    private void setListeners() {
+    private void setListenersAndCount() {
         imageViewExchange.setOnClickListener(this);
         imageViewHideReturnDate.setOnClickListener(this);
         textViewShowReturnDate.setOnClickListener(this);
@@ -164,6 +172,7 @@ public class MainActivity extends GeneralActivity implements View.OnClickListene
         buttonFindFlight.setOnClickListener(this);
         textInputFlightDate.setOnClickListener(this);
         textInputReturnDate.setOnClickListener(this);
+
         textViewNumAdultPassengers.setText(String.valueOf(adultNum));
         textViewNumKidPassengers.setText(String.valueOf(kidNum));
         textViewNumChildPassengers.setText(String.valueOf(childNum));
@@ -350,12 +359,16 @@ public class MainActivity extends GeneralActivity implements View.OnClickListene
 
     @Override
     public void goToForecastActivity(Class activityClass) {
-        Intent intent = new Intent(this, activityClass);
-        intent.putExtra(Constants.CITY_LAT_LON, cityLatLon);
-        intent.putExtra(Constants.CITY_LAT_LON2, cityLatLon2);
-        intent.putExtra(Constants.CITY, from);
-        intent.putExtra(Constants.CITY_2, to);
-        startActivity(intent);
+        if (!cityLatLon.equals("") && !cityLatLon2.equals("")) {
+            Intent intent = new Intent(this, activityClass);
+            intent.putExtra(Constants.CITY_LAT_LON, cityLatLon);
+            intent.putExtra(Constants.CITY_LAT_LON2, cityLatLon2);
+            intent.putExtra(Constants.CITY, from);
+            intent.putExtra(Constants.CITY_2, to);
+            startActivity(intent);
+        }else {
+            Toast.makeText(this, R.string.choose_cities, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void setCalendarDate() {

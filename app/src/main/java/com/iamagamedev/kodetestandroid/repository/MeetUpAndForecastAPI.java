@@ -11,7 +11,7 @@ import retrofit2.http.Query;
  * Created by Михан on 05.03.2018.
  */
 
-public interface MeetUpAPI {
+public interface MeetUpAndForecastAPI {
 
     @GET("2/cities?&country=ru")
     Call<Results> getCityList();

@@ -20,7 +20,7 @@ import butterknife.ButterKnife;
  * Created by Михан on 07.03.2018.
  */
 
-public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityListViewHolder> implements Filterable {
+public class CityListRecyclerAdapter extends RecyclerView.Adapter<CityListRecyclerAdapter.CityListViewHolder> implements Filterable {
 
     private List<String> cityArray;
     private List<String> cityArray2;
@@ -37,7 +37,7 @@ public class CityListAdapter extends RecyclerView.Adapter<CityListAdapter.CityLi
         this.listener = listener;
     }
 
-    public CityListAdapter(List<String> cityArray, List<String> cityLatLon) {
+    public CityListRecyclerAdapter(List<String> cityArray, List<String> cityLatLon) {
         this.cityArray = cityArray;
         this.cityArray2 = cityArray;
         this.cityLatLon = cityLatLon;
