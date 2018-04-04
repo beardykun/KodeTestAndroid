@@ -421,12 +421,12 @@ public class MainActivity extends GeneralActivity implements View.OnClickListene
 
     @Override
     public void showError(String error, int... code) {
-        showError(error, code);
+        showErrorSnack(error);
     }
 
     @Override
     public void showError(int error, int... code) {
-        showError(error, code);
+        showErrorSnack(getString(error));
     }
 
     private boolean maxPassengersNum() {

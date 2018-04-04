@@ -121,11 +121,11 @@ public class CityListActivity extends GeneralActivity implements SearchView.OnQu
 
     @Override
     public void showError(String error, int... code) {
-        showError(error, code);
+        showErrorSnack(error);
     }
 
     @Override
     public void showError(int error, int... code) {
-        showError(error, code);
+        showErrorSnack(getString(error));
     }
 }
