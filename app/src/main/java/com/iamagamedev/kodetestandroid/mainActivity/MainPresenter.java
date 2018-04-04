@@ -103,7 +103,7 @@ public class MainPresenter implements IMainPresenter {
 
     @Override
     public void forecastWeather(String from, String to, String cityLatLon, String cityLatLon2) {
-        if (view != null){
+        if (view != null) {
             if (!cityLatLon.equals("") && !cityLatLon2.equals("")) {
                 Intent intent = new Intent(ThisApplication.getInstance(), ForecastActivity.class);
                 intent.putExtra(Constants.CITY_LAT_LON, cityLatLon);

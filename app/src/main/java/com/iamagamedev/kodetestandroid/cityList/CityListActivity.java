@@ -6,7 +6,6 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.iamagamedev.kodetestandroid.Constants;
@@ -106,7 +105,6 @@ public class CityListActivity extends GeneralActivity implements SearchView.OnQu
     public void onCityListItemClick(String city, String cityLatLon) {
         Intent intent = new Intent(this, MainActivity.class);
         mPresenter.onCityClick(intent, city, cityLatLon, fromTo);
-        Log.i("City", cityLatLon);
     }
 
     @Override

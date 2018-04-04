@@ -2,7 +2,6 @@ package com.iamagamedev.kodetestandroid.mainActivity;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
@@ -215,8 +214,8 @@ public class MainActivity extends GeneralActivity implements View.OnClickListene
 
             case R.id.imageViewExchange:
                 if (!cityLatLon.equals("") && !cityLatLon2.equals(""))
-                presenter.exchangeDestination(textViewDeparturePlace, textViewDestinationPlace,
-                        from, to, cityLatLon, cityLatLon2);
+                    presenter.exchangeDestination(textViewDeparturePlace, textViewDestinationPlace,
+                            from, to, cityLatLon, cityLatLon2);
                 break;
 
             case R.id.layoutDeparturePlace:

@@ -18,7 +18,7 @@ public class CityListPresenter implements ICityListPresenter, ICityListInteracto
     private ICityListView view;
     private ICityListInteractor mInteractor;
 
-    public CityListPresenter() {
+    CityListPresenter() {
         mInteractor = new CitiListInteractor();
     }
 
@@ -52,9 +52,9 @@ public class CityListPresenter implements ICityListPresenter, ICityListInteracto
     public void onSuccess(List<Result> list) {
         if (view != null) {
             view.hideProgress();
-            List<String>cityName = new ArrayList<>(1);
-            List<String>cityLatLon = new ArrayList<>(1);
-            for (int i = 0; i < list.size(); i++){
+            List<String> cityName = new ArrayList<>(1);
+            List<String> cityLatLon = new ArrayList<>(1);
+            for (int i = 0; i < list.size(); i++) {
                 cityName.add(list.get(i).getCity());
                 cityLatLon.add(list.get(i).getLat() + "," + list.get(i).getLon());
             }
@@ -64,7 +64,7 @@ public class CityListPresenter implements ICityListPresenter, ICityListInteracto
 
     @Override
     public void onError(String error, int... code) {
-        if (view != null){
+        if (view != null) {
             view.hideProgress();
             view.showError(error, code);
         }
@@ -72,7 +72,7 @@ public class CityListPresenter implements ICityListPresenter, ICityListInteracto
 
     @Override
     public void onError(int error, int... code) {
-        if (view != null){
+        if (view != null) {
             view.hideProgress();
             view.showError(error, code);
         }
