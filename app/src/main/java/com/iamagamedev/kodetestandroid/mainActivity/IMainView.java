@@ -24,9 +24,5 @@ public interface IMainView extends IGeneralView {
 
     void childMinusPress();
 
-    void goToNextActivity(Class activityClass, boolean destination);
-
-    void goToForecastActivity(Class activityClass);
-
     void changeValues(String from, String to, String cityLatLon, String cityLatLon2);
 }

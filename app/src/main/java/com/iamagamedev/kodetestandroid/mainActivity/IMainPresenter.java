@@ -33,7 +33,8 @@ public interface IMainPresenter extends IGeneralPresenter {
 
     void onCityClick(boolean destination);
 
-    void forecastWeather();
+    void forecastWeather(String from, String to, String cityLatLon, String cityLatLon2);
 
     void changeBaseUrl(String url);
+
 }

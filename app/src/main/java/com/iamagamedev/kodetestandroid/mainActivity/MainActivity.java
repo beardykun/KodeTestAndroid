@@ -231,7 +231,7 @@ public class MainActivity extends GeneralActivity implements View.OnClickListene
 
             case R.id.buttonFindFlight:
                 presenter.changeBaseUrl(Constants.FORECAST_URL);
-                presenter.forecastWeather();
+                presenter.forecastWeather(from, to, cityLatLon, cityLatLon2);
                 break;
 
             case R.id.textInputFlightDate:
@@ -337,31 +337,6 @@ public class MainActivity extends GeneralActivity implements View.OnClickListene
             textViewNumChildPassengers.setTextColor(getResources().getColor(R.color.gray_not_selected));
             textViewPassengerChildYears.setTextColor(getResources().getColor(R.color.gray_not_selected));
             imageViewPassengerChildMinus.setImageDrawable(minusGray);
-        }
-    }
-
-    @Override
-    public void goToNextActivity(Class activityClass, boolean destination) {
-        Intent intent = new Intent(this, activityClass);
-        if (!destination) {
-            intent.putExtra(Constants.FROM_TO, false);
-        } else {
-            intent.putExtra(Constants.FROM_TO, true);
-        }
-        startActivity(intent);
-    }
-
-    @Override
-    public void goToForecastActivity(Class activityClass) {
-        if (!cityLatLon.equals("") && !cityLatLon2.equals("")) {
-            Intent intent = new Intent(this, activityClass);
-            intent.putExtra(Constants.CITY_LAT_LON, cityLatLon);
-            intent.putExtra(Constants.CITY_LAT_LON2, cityLatLon2);
-            intent.putExtra(Constants.CITY, from);
-            intent.putExtra(Constants.CITY_2, to);
-            startActivity(intent);
-        } else {
-            Toast.makeText(this, R.string.choose_cities, Toast.LENGTH_SHORT).show();
         }
     }
 
