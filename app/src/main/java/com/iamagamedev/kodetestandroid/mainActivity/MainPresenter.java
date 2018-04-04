@@ -1,8 +1,10 @@
 package com.iamagamedev.kodetestandroid.mainActivity;
 
-import com.iamagamedev.kodetestandroid.repository.RetrofitForMyApp;
+import android.widget.TextView;
+
 import com.iamagamedev.kodetestandroid.cityList.CityListActivity;
 import com.iamagamedev.kodetestandroid.forecastActivity.ForecastActivity;
+import com.iamagamedev.kodetestandroid.repository.RetrofitForMyApp;
 
 /**
  * Created by Михан on 05.03.2018.
@@ -35,9 +37,14 @@ public class MainPresenter implements IMainPresenter {
     }
 
     @Override
-    public void exchangeDestination() {
-        if (view != null)
-            view.destinationExchange();
+    public void exchangeDestination(TextView dep, TextView dest, String from, String to,
+                                    String cityLatLon, String cityLatLon2) {
+        if (view != null) {
+            String newDestination = dep.getText().toString();
+            dep.setText(dest.getText());
+            dest.setText(newDestination);
+            view.changeValues(from, to, cityLatLon, cityLatLon2);
+        }
     }
 
     @Override

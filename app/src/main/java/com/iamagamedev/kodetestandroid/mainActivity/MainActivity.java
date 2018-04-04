@@ -116,7 +116,7 @@ public class MainActivity extends GeneralActivity implements View.OnClickListene
         setCalendarDate();
     }
 
-    private void getExtras(Bundle bundle){
+    private void getExtras(Bundle bundle) {
         if (bundle != null && bundle.containsKey(Constants.CITY)) {
             if (!bundle.getBoolean(Constants.FROM_TO, false)) {
                 from = bundle.getString(Constants.CITY);
@@ -146,9 +146,9 @@ public class MainActivity extends GeneralActivity implements View.OnClickListene
         textViewDeparturePlace.setText(from);
         textViewDestinationPlace.setText(to);
         if (!cityLatLon.equals(""))
-        findViewById(R.id.textViewDeparturePlaceAllAirports).setVisibility(View.VISIBLE);
+            findViewById(R.id.textViewDeparturePlaceAllAirports).setVisibility(View.VISIBLE);
         if (!cityLatLon2.equals(""))
-        findViewById(R.id.textViewDestinationPlaceAllAirports).setVisibility(View.VISIBLE);
+            findViewById(R.id.textViewDestinationPlaceAllAirports).setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -214,7 +214,9 @@ public class MainActivity extends GeneralActivity implements View.OnClickListene
                 break;
 
             case R.id.imageViewExchange:
-                presenter.exchangeDestination();
+                if (!cityLatLon.equals("") && !cityLatLon2.equals(""))
+                presenter.exchangeDestination(textViewDeparturePlace, textViewDestinationPlace,
+                        from, to, cityLatLon, cityLatLon2);
                 break;
 
             case R.id.layoutDeparturePlace:
@@ -258,14 +260,6 @@ public class MainActivity extends GeneralActivity implements View.OnClickListene
             showDialog(DIALOG_RETURN_CALL);
         else
             createReturnDialog();
-
-    }
-
-    @Override
-    public void destinationExchange() {
-        String newDestination = textViewDeparturePlace.getText().toString();
-        textViewDeparturePlace.setText(textViewDestinationPlace.getText());
-        textViewDestinationPlace.setText(newDestination);
     }
 
     @Override
@@ -366,9 +360,17 @@ public class MainActivity extends GeneralActivity implements View.OnClickListene
             intent.putExtra(Constants.CITY, from);
             intent.putExtra(Constants.CITY_2, to);
             startActivity(intent);
-        }else {
+        } else {
             Toast.makeText(this, R.string.choose_cities, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void changeValues(String dep, String dest, String oldCityLatLon, String oldCityLatLon2) {
+        from = dest;
+        to = dep;
+        cityLatLon = oldCityLatLon2;
+        cityLatLon2 = oldCityLatLon;
     }
 
     private void setCalendarDate() {

@@ -1,12 +1,14 @@
 package com.iamagamedev.kodetestandroid.mainActivity;
 
+import android.widget.TextView;
+
 import com.iamagamedev.kodetestandroid.generalActivity.IGeneralPresenter;
 
 /**
  * Created by Михан on 05.03.2018.
  */
 
-public interface IMainPresenter extends IGeneralPresenter{
+public interface IMainPresenter extends IGeneralPresenter {
 
     void onAttachView(IMainView view);
 
@@ -14,7 +16,8 @@ public interface IMainPresenter extends IGeneralPresenter{
 
     void showReturnDate();
 
-    void exchangeDestination();
+    void exchangeDestination(TextView dep, TextView dest, String from, String to,
+                             String cityLatLon, String cityLatLon2);
 
     void adultPlus();
 

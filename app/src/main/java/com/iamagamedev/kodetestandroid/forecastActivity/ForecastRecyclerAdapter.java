@@ -63,7 +63,7 @@ public class ForecastRecyclerAdapter extends RecyclerView.Adapter<ForecastRecycl
         holder.textViewForecastDepartureCloudiness.setText(cloudinessFormat);
         holder.textViewForecastDepartureWindSpeed.setText(windSpeedFormat);
         holder.textViewForecastDepartureWindDirection.setText(windDirectionFormat);
-        setBackgroundAndTemperatureIcon(holder.textViewForecastDepartureTemperature, holder.imageViewForecastDepartureTemp, (int)temperatureC, ThisApplication.getInstance());
+        setBackgroundAndTemperatureIcon(holder.textViewForecastDepartureTemperature, holder.imageViewForecastDepartureTemp, (int) temperatureC, ThisApplication.getInstance());
 
         double temperatureC2 = forecastObjectDestination.getList().get(position).getMain().getTemp() - 273.15;
         String celsiusFormat2 = String.format(Locale.JAPAN, "%.1f C", temperatureC2);
@@ -84,7 +84,7 @@ public class ForecastRecyclerAdapter extends RecyclerView.Adapter<ForecastRecycl
         holder.textViewForecastDestinationCloudiness.setText(cloudinessFormat2);
         holder.textViewForecastDestinationWindSpeed.setText(windSpeedFormat2);
         holder.textViewForecastDestinationWindDirection.setText(windDirectionFormat2);
-        setBackgroundAndTemperatureIcon(holder.textViewForecastDestinationTemperature, holder.imageViewForecastDestinationTemp, (int)temperatureC2, ThisApplication.getInstance());
+        setBackgroundAndTemperatureIcon(holder.textViewForecastDestinationTemperature, holder.imageViewForecastDestinationTemp, (int) temperatureC2, ThisApplication.getInstance());
     }
 
     private String degToCompass(Double degree) {
@@ -155,17 +155,17 @@ public class ForecastRecyclerAdapter extends RecyclerView.Adapter<ForecastRecycl
         Picasso.with(ThisApplication.getInstance()).load(Uri.parse("http://openweathermap.org/img/w/" + weather + ".png")).into(imageView);
     }
 
-    private void setBackgroundAndTemperatureIcon(TextView textView, ImageView imageView, int temp, Context context){
-        if (temp <= 0){
+    private void setBackgroundAndTemperatureIcon(TextView textView, ImageView imageView, int temp, Context context) {
+        if (temp <= 0) {
             textView.setBackgroundColor(context.getResources().getColor(R.color.cold));
             imageView.setImageDrawable(context.getResources().getDrawable(R.mipmap.ic_cold));
-        }else if (temp > 0 && temp <= 15){
+        } else if (temp <= 15) {
             textView.setBackgroundColor(context.getResources().getColor(R.color.cool));
             imageView.setImageDrawable(context.getResources().getDrawable(R.mipmap.ic_cool));
-        }else if (temp > 15 && temp <= 30){
+        } else if (temp <= 30) {
             textView.setBackgroundColor(context.getResources().getColor(R.color.warm));
             imageView.setImageDrawable(context.getResources().getDrawable(R.mipmap.ic_warm));
-        }else if (temp > 30){
+        } else {
             textView.setBackgroundColor(context.getResources().getColor(R.color.really_hot));
             imageView.setImageDrawable(context.getResources().getDrawable(R.mipmap.ic_hot));
         }
